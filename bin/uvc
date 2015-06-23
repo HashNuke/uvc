@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+source $(dirname $(dirname $0))/lib/utils.sh
+
+source $(dirname $(dirname $0))/lib/commands/init.sh
+source $(dirname $(dirname $0))/lib/commands/status.sh
+source $(dirname $(dirname $0))/lib/commands/commit.sh
+source $(dirname $(dirname $0))/lib/commands/switch.sh
+source $(dirname $(dirname $0))/lib/commands/create-branch.sh
+source $(dirname $(dirname $0))/lib/commands/delete-branch.sh
+
+
+callback_args="${@:2}"
+
+case $1 in
+
+"init")
+    init_command $callback_args;;
+
+"status")
+    status_command $callback_args;;
+
+"commit")
+    commit_command $callback_args;;
+
+"switch")
+    switch_command $callback_args;;
+
+"create-branch")
+    create_branch_command $callback_args;;
+
+"delete-branch")
+    delete_branch_command $callback_args;;
+
+"help")
+    help_command $callback_args;;
+
+*)
+  help_command
+  exit 1;;
+esac
